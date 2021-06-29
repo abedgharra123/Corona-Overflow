@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %} {{name}} {% endblock %}
+
+{% block page-title %} {{name}} {% endblock %}
+
+<!-- style -->
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <style>
+    .room:hover{
+         background-color: hsl(0, 0%, 7%);
+         border-left-color: green ;
+         border-right-color: green ;
+         border-radius: 0 20px 0 20px;
+    }
+    .room{
+        border-radius: 20px 0 20px 0;
+        background-color: hsl(0, 0%, 7%);  
+        margin: 0 auto; 
+        margin-bottom: 50px;
+        border-left:5px solid #3b5998; 
+        border-right:5px solid #3b5998;
+        display: block;  
+        padding: 15px 15px 0px 25px;
+        color:hsla(0, 100%, 100%, 0.88) ;
+        width: 65%;
+        transition: 0.5s all ease-out;
+        
+    }
+    b{
+        color: #3b5998;
+    }
+    button :hover{
+        color: black;
+        background-color: white;
+        cursor: pointer;
+    }
+    .btn:hover{
+        color: black;
+        background-color: white;
+        cursor: pointer;
+    }
+    .answer{
+        background-color: rgb(53, 53, 53);
+    }
+    .answer:hover{
+        background-color: white;
+    }
+    .faa {
+        font-size: 20px;
+        cursor: pointer;
+        user-select: none;
+        transition: 0.2s all ease-out;
+        color: skyblue;
+    }
+    .faa:hover {
+        text-decoration: none;
+        transform: scale(1.1);
+    }
+
+    
+ </style>
+{% endblock %}
+
+<!-- nar items buttons -->
+{% block nav-items %}
+    <a href="{% url 'home' %}" class="newroom" style=" margin-left: 20px;">Home</a>
+    {% if obj.is_teacher %}
+        <a href="{% url 'create-room' %}" class="newroom" style="margin-left: 20px;">Create room</a>
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+{% if not obj.is_teacher %}
+<form style="text-align: center;" class="room" method="post" action=".">
+    {% csrf_token %}
+    <div style="font-size: 40px; color: green;">Ask a Question</div>
+    {{form.question}}
+    <button style="margin: 15px;"  type="submit" class="btn btn-black">Post</button>
+</form>
+
+{% endif %}
+
+{% for blog in blogs %}
+<div class="room" >
+    <div style="font-size: 40px; color:hsla(0, 100%, 100%, 0.88) ; display: block;" >
+        <div style="color: #3b5998; text-align: center; font-size: larger;">Question from <span style="color:#4971c8; text-decoration: underline; font-weight: 700;">{{blog.creator}}</span> </div>
+        <div > {{blog.question}}</div>
+        <div style="margin-bottom: 10px; text-align: center; color: #3b5998; width: 100%; border-bottom: 1px solid #3b5998;">Comments</div>
+        {% for answer in answers %}
+            {% if  answer.question == blog %}
+            <div>
+                <div style="display: inline-block;  font-size: 20px;">
+                    <div>
+                        <div style="display: inline-block; color: #3b5998;">{{answer.creator}}</div>
+                         : {{answer.answer}} 
+                    </div>
+                     <span style="   font-size: 15px; color: green;">
+                        {{ answer.date }}
+                    </span>
+                    {% if obj.username == answer.creator.username %} | <a style="color:red; font-size: 15px;" href="{% url 'delete-answer' name answer.pk %}">Delete</a>{% endif %}
+                    | <a style="font-size: 15px;" href="{% url 'likeanswer' name answer.pk %}" class="fa fa-thumbs-up faa"> {{ answer.likes }} Like</a>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+        
+        <form style="text-align: center; margin-top: 10px;"  method="post" action={% url 'create_answer' name blog.pk %}>
+            {% csrf_token %}
+            {{form1.answer}}
+            <button style="margin: 15px; width: 100px;"  type="submit" class="btn btn-black">Comment</button>
+        </form>
+        
+        <span style=" display: block;  font-size: 20px; color: white;">
+            <span style="color: green;"> Post Date : {{ blog.date }}</span>
+            {% if obj.username == blog.creator.username %} | <a href="{% url 'update-blog' name blog.pk %}">Edit</a> {% endif %} 
+            {% if obj.username == blog.creator.username or obj.is_teacher %} | <a style="color:red;" href="{% url 'delete-blog' name blog.pk %}">Delete</a>{% endif %}
+            | <a href="{% url 'like' name blog.pk %}" class="fa fa-thumbs-up faa"> {{ blog.likes }} Likes</a>
+        </span>
+    </div>
+</div>
+{% endfor %}
+
+<script>
+    function myFunction(x) {
+      x.classList.toggle("fa-thumbs-down");
+    }
+</script>
+{% endblock %}

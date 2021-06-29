@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %} Users list {% endblock %}
+
+{% block style %}
+    <style>
+        table{
+            border: 1px solid grey;
+            margin: 0 auto;
+            margin-top: 80px;
+            border-collapse: collapse;
+            border-radius: 10px;
+        }
+        td{
+            border: 1px solid grey;
+            text-align: center;
+            padding: 8px;
+        }
+        td:hover{
+            background-color: rgb(223, 223, 223);
+        }
+        tr:hover{
+           background-color: rgb(207, 207, 207);
+        }
+        th{
+            padding: 10px;
+            font-family: cursive;
+            font-size: 20px;
+            color: #3b5998;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>Full name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Is Teacher</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in objects %}
+            <tr> 
+                <td>{{user.fullname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.is_teacher}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

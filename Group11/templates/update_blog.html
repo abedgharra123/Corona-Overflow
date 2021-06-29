@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %} Update Question {% endblock %}
+
+{% block page-title %}Update Question{% endblock %}
+
+<!-- nar items buttons -->
+{% block nav-items %}
+    <a href="{% url 'home' %}" class="newroom" style=" margin-left: 20px;">Home</a>
+{% endblock %}
+
+<!-- style -->
+{% block style %}
+<style>
+
+    .btn{
+        color: white;
+        background-color: black;
+    }
+    .btn:hover{
+        color: black;
+        background-color: white;
+        cursor: pointer;
+    }
+    .text-input{
+        width: 40%;
+        height: 70px;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+    <form method="post"  action="" style="background-color: rgba(255, 255, 255, 0); width: 60%; text-align: center; margin: auto;">
+        {% csrf_token %}   
+
+        <div style="margin: 30px; font-size: 50px;"> Your new question  </div>
+        {{form.question}}
+
+
+        <button style="margin: 30px;" type="submit" class="btn">Commit changes</button>
+    </form>
+{% endblock %}

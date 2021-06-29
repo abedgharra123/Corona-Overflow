@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %} {% if edit %} Edit Room {% else %} Create Room {% endif %} {% endblock %}
+
+{% block page-title %}{% if edit %} Edit Room {% else %}Create Room{% endif %}{% endblock %}
+
+<!-- nar items buttons -->
+{% block nav-items %}
+    <a href="{% url 'home' %}" class="newroom">Home</a>
+    <a href="." class="newroom">Create room</a>
+{% endblock %}
+
+<!-- style -->
+{% block style %}
+<style>
+
+    button :hover{
+        color: black;
+        background-color: white;
+        cursor: pointer;
+        
+    }
+
+    .btn:hover{
+        color: black;
+        background-color: white;
+        cursor: pointer;
+    }
+    .text-input{
+        width: 40%;
+        height: 90px;
+        
+    }
+    .lst{
+        list-style-type: none;
+        columns: 2;
+        width: 80%;
+        margin: 0 auto;
+    }
+    li{
+        padding: 10px 10px 10px 30px;
+        font-size: 50px;
+        
+        
+    }
+    li:hover{
+        background-color: black;
+    }
+    input[type="checkbox"]{
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+    input[type="text"]{
+        width: 50%;
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+    <form method="post" enctype='multipart/form-data' action="" style="background-color: rgba(255, 255, 255, 0); width: 100%; text-align: center; ">
+        {% csrf_token %}  
+
+        
+
+        <h1 style=" color: #3b5998;">Room's Name :</h1>
+        {% if edit %} <h1>{{name}}<div style="display: none;">{{form.name}}</div></h1> {% else %} <h1>{{form.name}}</h1> {% endif %}
+        <span style="color: red;">{{ form.name.errors }}</span>
+
+        <h1 style=" color: #3b5998;">Select Students:</h1>
+        <span style="color: red;">{{ form.students.errors }}</span>
+        <h1 style="text-align: left;">{{form.students}}</h1>
+        <button  type="submit" class="btn btn-black">Submit</button>
+    </form>
+{% endblock %}

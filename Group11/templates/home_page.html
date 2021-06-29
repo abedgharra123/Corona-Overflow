@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block page-title %}Home Page{% endblock %}
+
+<!-- style -->
+{% block style %}
+ <style>
+    .room:hover{
+    background-color: hsl(0, 0%, 5%);
+    border-left-color: green ;
+    border-right-color: green ;
+    transform:scale(1.05);
+    border-radius: 0 20px 0 20px;
+    }
+    .room{
+        border-radius: 20px 0 20px 0;
+        background-color: hsl(0, 0%, 7%);  
+        margin: 5px 10px 15px 10px; 
+        border-left:5px solid #3b5998; 
+        border-right:5px solid #3b5998; 
+        display: block;  
+        padding: 15px 15px 0px 25px;
+        color:hsla(0, 100%, 100%, 0.88) ;
+        transition: 0.3s all ease-out;
+    }
+    b{
+        color: #3b5998;
+        font-size:30px;
+        font-weight:bold;
+    }
+    p{
+        font-size:20px;
+        font-weight:bold;
+    }
+
+ </style>
+{% endblock %}
+
+<!-- nar items buttons -->
+{% block nav-items %}
+    <a href="." class="newroom">Home</a>
+    {% if obj.is_teacher %}
+        <a href="{% url 'create-room' %}" class="newroom">Create room</a>
+
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <table style="width: 90%; margin: 25px; ">
+        <thead>
+            <tr style="font-size: 50px; color: #3b5998;">
+                <td style="width: 70%; text-align: center; " > <span > Rooms </span></td>
+                <td style="text-align: center; border-bottom: 1px solid #3b5998;">Profile</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    {% if size == 0 %}
+                        <div style="text-align: center; font-size: 80px; font-weight: 700; color: red; margin-top: 50px;">
+                            You are not in any room.
+                        </div>
+                    {% endif %}
+                    {% for room in rooms %}
+                        <div class="room" >
+                            <a  href="{% url 'inside-room' room.name %}" style="font-size: 50px;  display: block; color:hsla(0, 100%, 100%, 0.88) ;" >
+                                {{room.name}}
+                            </a>
+                            <span style="vertical-align: text-top; font-size: 15px; color: gray;">
+                                <span style="color: green;">Teacher: {{room.creator}}</span>
+                                | <span style="color: green;"> {{room.get_subject_display}} </span>
+                                {% if obj.is_teacher %} | <a href="{% url 'update-room' room.name %}">Edit</a> |{% endif %} 
+                                {% if obj.is_teacher %}<a style="color:red;" href="{% url 'delete-room' room.name %}">Delete</a>{% endif %}
+                            </span>
+                        </div>
+                    {% endfor %}
+                </td>
+                <td  style="padding-left:10px ; vertical-align: top; text-align: center;">
+                    {% if obj.is_teacher %}
+                        <p style="font-size: 30px; margin: 10px; padding: 10px;">Teacher</p>
+                    {% else %}
+                        <p style="font-size: 30px; margin: 10px; padding: 10px;">Student</p>
+                    {% endif %}
+                    <b>Email</b>
+                        <p>{{ obj.email }} </p>
+                    <b>Username</b>
+                        <p>{{ obj.username }} </p>
+                    <b>Subject</b>
+                        <p>{{ obj.get_subject_display }} </p>
+                    {% if not obj.is_teacher %}
+                    <p > <b> Year  </b>{{ obj.year }} </p> 
+                    {% endif %}
+                    <p> <b> Number of rooms you are in  </b>{{ size }} </p>
+                </td>
+            </tr>
+        </thead>
+    </table>
+{% endblock %}

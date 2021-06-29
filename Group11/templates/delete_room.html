@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}  {% if edit1 %} Delete Question {% else %} Delete Room {% endif %} {% endblock %}
+
+{% block page-title %}{% if edit1 %} Delete Question {% else %} Delete Room {% endif %} {% endblock %}
+
+<!-- nar items buttons -->
+{% block nav-items %}
+    <a href="{% url 'home' %}" class="newroom" style=" margin-left: 20px;">Home</a>
+{% endblock %}
+
+<!-- style -->
+{% block style %}
+<style>
+
+    button :hover{
+        color: red;
+        background-color: white;
+        cursor: pointer;
+    }
+    .btn:hover{
+        color: red;
+        background-color: white;
+        cursor: pointer;
+    }
+    .text-input{
+        width: 40%;
+        height: 70px;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+    <form method="post" enctype='multipart/form-data' action="" style="background-color: rgba(255, 255, 255, 0); width: 50%; text-align: center; margin: auto;">
+        {% csrf_token %}   
+
+
+        <h1  style=" color: #3b5998;" >Are you sure you want to delete <span style=" color: red" >{{name}}</span> ? </h1>
+
+
+        <button  type="submit" class="btn">Delete</button>
+    </form>
+{% endblock %}

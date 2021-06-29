@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" href="{% static 'logo.jpg' %}" type="image/jpg" sizes="16x16">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body{
+            font-family: 'Times New Roman',"Lato", sans-serif;
+            margin: 0;
+            padding: 100px 0 0 0;
+            background-color: #181818;
+            color: white;
+        }
+        nav{
+            background-color:#3b5998;
+            border-bottom:2px solid #3b5998;
+            padding: 10px;
+            font-size: 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            color: #fff;
+            font-family: cursive;
+
+        }
+        .title{
+            color: #ffffff;
+            text-align: center;
+            margin: 0 25px 25px 25px;
+            border-bottom:1px solid lightgrey;
+            font-size: 50px;
+            font-family: 'Times New Roman', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-shadow: 0 0 30px #ffffff;
+        }
+        .btn-black{
+            background-color: #000 ;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px;
+            border-color: black;
+            width: 70px;
+            height: 40px;
+        }
+        .newroom{
+            color: #ffffff;  
+            margin-left: 20px;
+            transition: 0.35s all ease-out;
+            text-decoration: none;
+            
+            float: right;
+            margin-right: 20px;
+
+        }
+        .newroom:hover{
+            color: white;
+            text-shadow: 0 0 15px white;
+            display: inline-block;
+            transform:scale(1.05);
+            text-decoration: none;
+        }
+        .logo{
+            font-size: 30px; 
+            font-family: 'Brush Script MT'; 
+            color: white; 
+            text-shadow: 0 0 15px black;
+            display: inline-block;
+            transform: scale(2.5);
+            margin-left: 120px;
+ 
+            
+        }
+        .c{
+            display: inline-block;
+            transform: scale(1.5);
+        }
+        
+    </style>
+    {% block style %}{% endblock %}
+
+    <title> {% block page-title %}{% endblock %} </title>
+</head>
+<body>
+    <nav> <span class="logo"> <div class="c">C</div>orona Overflow</span>
+        <a href="{% url 'logout' %}" class="newroom" style="float: right;"> <i class="fa fa-sign-out" style="font-size:36px"></i> Logout</a>
+        {% block nav-items %}{% endblock %}
+    </nav>
+    <div class="title">{% block title %}{% endblock %}</div>
+    {% block content %}
+        
+    {% endblock %}
+</body>
+</html>

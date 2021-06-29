@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" href="{% static 'logo.jpg' %}" type="image/jpg" sizes="16x16">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    
+
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+        .main-head{
+           height: 150px;
+           background: #FFF;
+   
+        }
+        .sidenav {
+            height: 100%;
+            background-color: #000;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+
+        
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+        }
+
+        @media screen and (max-width: 450px) {
+            .login-form{
+                margin-top: 10%;
+            }
+
+            .register-form{
+                margin-top: 10%;
+            }
+        }
+
+        @media screen and (min-width: 768px){
+            .main{
+                margin-left: 40%; 
+            }
+
+            .sidenav{
+                width: 40%;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+            }
+
+            .login-form{
+                margin-top: 55%;
+                padding-top: 50px ;
+            }
+
+            .register-form{
+                margin-top: 50%;
+            }
+        }
+
+
+        .login-main-text{
+            margin-top: 20%;
+            padding: 60px;
+            color: #fff;
+        }
+
+        .login-main-text h2{
+            font-weight: 300;
+        }
+
+        .btn-black{
+            background-color: #000 !important;
+            color: #fff;
+        }
+
+        .checkbx{
+            width:30px;
+            height:30px;
+        }
+        .c{
+            display: inline-block;
+            transform: scale(1.5);
+            font-family: 'Brush Script MT';
+        }
+        .logo{
+            font-size: 30px; 
+            font-family: 'Brush Script MT'; 
+            color: white; 
+            text-shadow: 0 0 15px white;
+            display: inline-block;
+            transform: scale(2.5);
+            margin-right: 50px;
+            margin-left: 95px;
+            margin-bottom: 50px;
+            
+        }
+
+    </style>
+    <title>Register</title>
+</head>
+<body>
+    <div class="sidenav">
+        <div class="login-main-text">
+            <h2><span class="logo"> <div class="c">C</div>orona Over-Flow</span><br> Register Page</h2>
+           <p>Register from here to access.</p>
+        </div>
+    </div>
+    <div class="main" style="width: 500px;">
+        <div class="col-md-6 col-sm-12" style="width: 500px;">
+           <div class="login-form" style="width: 500px;">
+              <form method="POST" action="" style="width: 500px;">
+                
+                {% csrf_token %}
+                {% for field in form %}
+                    <div style="padding: 0; margin: 0;">{{ field.label_tag }}</div>
+                    <div style="margin: 0 0 20px 0; ">{{ field }}</div><span style="color: red;">{{ field.errors }}</span>
+                {% endfor %}
+                <div style="display: inline-block;">
+                    <button type="submit" class="btn btn-secondary">Register</button>
+                </div>
+                <div style="float: right;">
+                    Already Signed up?<a href="{% url 'loginpage' %}"  >Login</a>
+                </div>
+              </form>
+              
+           </div>
+        </div>
+    </div>
+</body>
+</html>
