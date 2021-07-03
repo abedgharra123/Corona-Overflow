@@ -89,14 +89,7 @@
             text-decoration: none;
             font-size: 17px;
         }
-        .logout{
-            transition: 0.5s all ease-in-out;
-        }
-        .logout:hover{
-            transform: scale(1.1);
-            text-shadow: 0 0 10px white;
-        }
-
+    
         .topnav a.active {
             background-color: #04AA6D;
             color: white;
@@ -106,12 +99,16 @@
             display: none;
         }
 
+        .fr{
+            float: right !important;
+        }
+
         @media screen and (max-width: 600px) {
             .topnav a:not(:first-child) {display: none;}
-                .topnav a.icon {
-                    float: right;
-                    display: block;
-                }
+            .topnav a.icon {
+                float: right;
+                display: block;
+            }
         }
 
         @media screen and (max-width: 600px) {
@@ -126,6 +123,9 @@
                 display: block;
                 text-align: left;
             }
+            .fr{
+                float: none !important;
+            }
         }
         
     </style>
@@ -136,10 +136,9 @@
 <body>
 
     <div class="topnav" id="myTopnav">
-             <a href=".">   <span class="logo"> <div class="c">C</div>orona Overflow</span></a>
-             
-             {% block nav-items %}{% endblock %}
-             <a class="logout" style="float:right;" href="{% url 'logout' %}" > <i class="fa fa-sign-out" style="font-size:20px"></i> Logout</a>
+            <a href=".">   <span class="logo"> <div class="c">C</div>orona Overflow</span></a>
+            {% block nav-items %}{% endblock %}
+            <a class="newroom fr" href="{% url 'logout' %}" > <i class="fa fa-sign-out" style="font-size:20px"></i> Logout</a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
             </a>
