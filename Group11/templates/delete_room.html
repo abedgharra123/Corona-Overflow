@@ -11,23 +11,10 @@
 
 <!-- style -->
 {% block style %}
-<style>
 
-    button :hover{
-        color: red;
-        background-color: white;
-        cursor: pointer;
-    }
-    .btn:hover{
-        color: red;
-        background-color: white;
-        cursor: pointer;
-    }
-    .text-input{
-        width: 40%;
-        height: 70px;
-    }
-</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/delete_room.css' %}">
+
 {% endblock %}
 
 

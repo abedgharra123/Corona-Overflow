@@ -1,0 +1,50 @@
+.room:hover{
+    background-color: hsl(0, 0%, 7%);
+    border-left-color: green ;
+    border-right-color: green ;
+    border-radius: 0 20px 0 20px;
+}
+.room{
+   border-radius: 20px 0 20px 0;
+   background-color: hsl(0, 0%, 7%);  
+   margin: 0 auto; 
+   margin-bottom: 50px;
+   border-left:5px solid #3b5998; 
+   border-right:5px solid #3b5998;
+   display: block;  
+   padding: 15px 15px 0px 25px;
+   color:hsla(0, 100%, 100%, 0.88) ;
+   width: 65%;
+   transition: 0.5s all ease-out;
+   
+}
+b{
+   color: #3b5998;
+}
+button :hover{
+   color: black;
+   background-color: white;
+   cursor: pointer;
+}
+.btn:hover{
+   color: black;
+   background-color: white;
+   cursor: pointer;
+}
+.answer{
+   background-color: rgb(53, 53, 53);
+}
+.answer:hover{
+   background-color: white;
+}
+.faa {
+   font-size: 20px;
+   cursor: pointer;
+   user-select: none;
+   transition: 0.2s all ease-out;
+   color: skyblue;
+}
+.faa:hover {
+   text-decoration: none;
+   transform: scale(1.1);
+}

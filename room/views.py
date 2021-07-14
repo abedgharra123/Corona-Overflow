@@ -1,11 +1,14 @@
 # type: ignore
 from django.shortcuts import render,redirect,HttpResponse
+from django.contrib.auth.decorators import login_required 
+
 
 from Group11.forms import RoomModelForm
 # Create your views here.
 from users.models import user
 from room.models import room
 
+@login_required(login_url='loginpage')
 def create_room(request):
     u = user.objects.get(username=request.user.username)
     if not u.is_teacher:
@@ -25,7 +28,7 @@ def create_room(request):
     return render(request, template_name, context)
 
 
-
+@login_required(login_url='loginpage')
 def update_room(request,name):
     u = user.objects.get(username=request.user.username)
     r = room.objects.get(name=name)
@@ -42,7 +45,7 @@ def update_room(request,name):
     return render(request, 'create_room.html',context)
 
 
-
+@login_required(login_url='loginpage')
 def delete_room(request,name):
     r = room.objects.get(name=name)
     if request.method == 'POST':

@@ -1,0 +1,14 @@
+button :hover{
+    color: red;
+    background-color: white;
+    cursor: pointer;
+}
+.btn:hover{
+    color: red;
+    background-color: white;
+    cursor: pointer;
+}
+.text-input{
+    width: 40%;
+    height: 70px;
+}

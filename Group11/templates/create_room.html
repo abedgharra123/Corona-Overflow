@@ -12,50 +12,9 @@
 
 <!-- style -->
 {% block style %}
-<style>
+{% load static %}
 
-    button :hover{
-        color: black;
-        background-color: white;
-        cursor: pointer;
-        
-    }
-
-    .btn:hover{
-        color: black;
-        background-color: white;
-        cursor: pointer;
-    }
-    .text-input{
-        width: 40%;
-        height: 90px;
-        
-    }
-    .lst{
-        list-style-type: none;
-        columns: 2;
-        width: 80%;
-        margin: 0 auto;
-    }
-    li{
-        padding: 10px 10px 10px 30px;
-        font-size: 50px;
-        
-        
-    }
-    li:hover{
-        background-color: black;
-    }
-    input[type="checkbox"]{
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-    }
-    input[type="text"]{
-        width: 50%;
-        margin: 0 auto;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'css/create_room.css' %}">
 {% endblock %}
 
 

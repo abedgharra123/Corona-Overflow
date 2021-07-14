@@ -3,6 +3,7 @@
 # type: ignore
 from django import http
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required 
 
 # Create your views here.
 
@@ -13,7 +14,7 @@ from room.models import room
 from users.models import user
 from Group11.forms import BlogModelForm,AnswerModelForm
 
-
+@login_required(login_url='loginpage')
 def inside_room(request,name):
     ''' room function '''
     form = BlogModelForm(request.POST or None)
@@ -38,7 +39,7 @@ def inside_room(request,name):
     return render(request,'inside_room.html',content)
 
 
-
+@login_required(login_url='loginpage')
 def update_blog(request,name,pk):
     ''' function to update blog '''
     r = blog.objects.get(pk=pk)
@@ -54,7 +55,7 @@ def update_blog(request,name,pk):
     context = {'form':form ,'edit1':'edit1' , 'name':name }
     return render(request, 'update_blog.html',context)
 
-
+@login_required(login_url='loginpage')
 def delete_blog(request,name,pk):
     ''' function to delete blog '''
     r = blog.objects.get(pk=pk)
@@ -66,6 +67,7 @@ def delete_blog(request,name,pk):
     context = {'edit1':'edit1' , 'name':r.question }
     return render(request, 'delete_room.html',context)
 
+@login_required(login_url='loginpage')
 def create_answer(request,pk,name):
     ''' function to create answer '''
     form1 = AnswerModelForm(request.POST or None)
@@ -78,6 +80,8 @@ def create_answer(request,pk,name):
             obj.save()
     return redirect('inside-room',name)
 
+
+@login_required(login_url='loginpage')
 def like_blog(request,pk,name):
     ''' function to like blog '''
     b = blog.objects.get(pk=pk)
@@ -98,7 +102,7 @@ def like_blog(request,pk,name):
     content = {'blogs':blogs, 'obj':obj, 'name':name , 'answers':answers, 'form':form, 'form1':form1}
     return render(request,'inside_room.html',content)
 
-
+@login_required(login_url='loginpage')
 def like_answer(request,pk,name):
     ''' function to like answer '''
 
@@ -120,6 +124,7 @@ def like_answer(request,pk,name):
     content = {'blogs':blogs, 'obj':obj, 'name':name , 'answers':answers, 'form':form, 'form1':form1}
     return render(request,'inside_room.html',content)
 
+@login_required(login_url='loginpage')
 def delete_answer(request,name,pk):
     ''' function to delete answer '''
     r = answer.objects.get(pk=pk)

@@ -23,7 +23,6 @@ class user(User):
         ('3', '3'),
         ('4', '4'),
     )
-
     is_teacher = models.BooleanField(default=False)
     year = models.CharField(max_length=300, choices = CHOICES1,default=CHOICES1[0][0])
     subject = models.CharField(max_length=300, choices = CHOICES,default=CHOICES[0][0])

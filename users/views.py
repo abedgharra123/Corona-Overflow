@@ -51,7 +51,7 @@ def loginpage(request):
     template_name = 'login.html'
     return render(request, template_name)
 
-
+@login_required(login_url='loginpage')
 def logoutpage(request):
     logout(request)
     return redirect('loginpage')
