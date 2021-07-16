@@ -33,6 +33,7 @@ body {
 @media screen and (min-width: 768px){
     .main{
         margin-left: 40%; 
+        margin-top: 100px;
     }
 
     .sidenav{
@@ -42,26 +43,17 @@ body {
         top: 0;
         left: 0;
     }
-
-    .login-form{
-        margin-top: 55%;
-        padding-top: 50px ;
-    }
-
-    .register-form{
-        margin-top: 50%;
-    }
 }
 
 
 .login-main-text{
     margin-top: 20%;
     padding: 60px;
-    color: #fff;
+    color: rgb(255, 255, 255);
 }
 
-.login-main-text h2{
-    font-weight: 300;
+.login-main-text h1{
+    font-weight: 900;
 }
 
 .btn-black{
@@ -73,20 +65,4 @@ body {
     width:30px;
     height:30px;
 }
-.c{
-    display: inline-block;
-    transform: scale(1.5);
-    font-family: 'Brush Script MT';
-}
-.logo{
-    font-size: 30px; 
-    font-family: 'Brush Script MT'; 
-    color: white; 
-    text-shadow: 0 0 15px white;
-    display: inline-block;
-    transform: scale(2.5);
-    margin-right: 50px;
-    margin-left: 95px;
-    margin-bottom: 50px;
-    
-}
+

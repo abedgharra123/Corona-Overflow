@@ -1,10 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
     <link rel="icon" href="{% static 'logo.jpg' %}" type="image/jpg" sizes="16x16">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
@@ -17,10 +17,11 @@
 
     <title> {% block page-title %}{% endblock %} </title>
 </head>
+
 <body>
 
     <div class="topnav" id="myTopnav">
-            <a href=".">   <span class="logo"> <div class="c">C</div>orona Overflow</span></a>
+            <a style="margin: 0;" href=".">   <span class="xl">Corona Overflow</span></a>
             {% block nav-items %}{% endblock %}
             <a class="newroom fr" href="{% url 'logout' %}" > <i class="fa fa-sign-out" style="font-size:20px"></i> Logout</a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
